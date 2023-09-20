@@ -1,0 +1,21 @@
+{
+  "name": "chatingweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./node_modules/nodemon/bin/nodemon.js index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sessionstorage-for-nodejs": "^1.0.2",
+    "express": "latest",
+    "socket.io": "latest",
+    "body-parser": "latest",
+    "ejs": "latest",
+    "nodemon": "latest"
+  }
+}

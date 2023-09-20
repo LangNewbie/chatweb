@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home - ChetG</title>
+</head>
+<body>
+    <div class="title"><span class="ntitle">ChetG</span><a href='/logout' class="ltitle">LogOut</a></div>
+  <div class="container">
+    <center>
+    <% for (let i of dataArray){ %>
+    <a href="mainchat"><div class="chat-box">
+      <div class="chat-title"><%= i.name %></div>
+    </div></a>
+    <% } %>
+    <button onclick="createChat()">Create Chat</button>
+    <button onclick="joinChat()">Join Chat</button>
+    </center>
+  </div>
+  <div style="margin-top: 250px;text-align: center">
+    <span style="font-weight: bold">© Lang | 2023</span><br>
+    <a href="https://instagram.com/l4lang">Report Bug</a>
+  </div>
+  <script>
+    function createChat(){
+      let id = prompt('Untuk membuat chat, masukkan parameter id terlebih dahulu agar orang lain bisa masuk ke chat anda!')
+      if (!id) return alert('Jangan kosong!')
+      if (id.length > 10) return alert('Id Terlalu Panjang!')
+      location.href='/createChat?id='+id
+    }
+    
+    function joinChat(){
+      let id = prompt('Masukkan id chat!')
+      location.href='/chat?id='+id
+    }
+  </script>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: "Robotic";
+    }
+    
+    button{
+      display: flex;
+      margin-left: 50px;
+      width: 250px;
+      border-radius: 50px;
+      border: none;
+      background-color: #959595;
+      padding: 15px;
+      margin-top: 10px;
+      text-align: center;
+      text-decoration: none;
+    }
+    
+    .container{
+      display: flex;
+      margin-top: 20px;
+    }
+    
+    .title{
+      display: flex;
+      background-color: #aeaeae;
+      height: 40px;
+    }
+    
+    .ntitle{
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 20pt;
+      display: flex;
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+    
+    .ltitle{
+      display: flex;
+      flex-direction: right;
+      margin-left: 60%;
+      margin-top: 10px;
+    }
+    
+    .chat-box {
+      display: flex;
+      color: #585858;
+      background-color: #ededed;
+      border-radius: 5px;
+      width: 250px;
+      height: 5rem;
+      font-size: 15pt;
+      text-align: center;
+      justify-content: center;
+      margin-left: 50px;
+      text-decoration: none;
+    }
+    
+    .chat-title{
+      display: flex;
+      margin: auto auto;
+      font-weight: bold;
+    }
+  </style>
+</body>
+</html>

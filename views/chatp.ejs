@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><%= id %> - ChetG</title>
+</head>
+<body>
+    <div class="title"><span class="ntitle">ChetG</span><a href='/logout' class="ltitle">LogOut</a></div>
+  <div id="container">
+    <div class="chat-box">
+      <span class="name">Lang</span><br><span class="pesan">Selamat datang di private chat! web masih dalam tahap pengembangan jadi untuk private chat tidak bisa melakukan save data.<br>Id Chat : <a href='/chat?id=<%= id %>'><%= id %></a></span>
+    </div>
+  </div>
+    <div class="blok">•</div>
+  <div class="inputan">
+  <input id="pesan" name="pesan" placeholder="Pesan">
+  <button id="sendMessage" onclick="submit()" >Kirim</button>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+  const message = document.getElementById('pesan')
+  const socket = io()
+  
+    function submit(){
+    if (!message.value) return alert('Masukkan pesan terlebih dahulu!')
+      let p = document.createElement('div')
+      const container = document.getElementById('container')
+      p.classList.add('chat-box')
+      let n = document.createElement('span')
+      n.classList.add('name')
+      n.textContent = 'Anda'
+      let br = document.createElement('br')
+      container.appendChild(p)
+      let s = document.createElement('span')
+      s.classList.add('pesan')
+      s.textContent = message.value
+      p.appendChild(n)
+      p.appendChild(br)
+      p.appendChild(s)
+      socket.emit('messages', message.value)
+      message.value = ''
+    }
+    
+    socket.on('messages', (data) => {
+      let p = document.createElement('div')
+      const container = document.getElementById('container')
+      p.classList.add('chat-box')
+      let n = document.createElement('span')
+      n.classList.add('name')
+      n.textContent = data.name
+      let br = document.createElement('br')
+      container.appendChild(p)
+      let s = document.createElement('span')
+      s.classList.add('pesan')
+      s.textContent = data.pesan
+      p.appendChild(n)
+      p.appendChild(br)
+      p.appendChild(s)
+    })
+  </script>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: "Robotic";
+    }
+    
+    #container{
+      overflow-y: scroll;
+      display: block;
+    }
+    
+    .title{
+      display: flex;
+      background-color: #aeaeae;
+      height: 40px;
+    }
+    
+    .ntitle{
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 20pt;
+      display: flex;
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+    
+    .blok{
+      position: absolute;
+      height: 30px;
+      left: 100px;
+    }
+    
+    .ltitle{
+      display: flex;
+      flex-direction: right;
+      margin-left: 60%;
+      margin-top: 10px;
+    }
+    
+    .chat-box {
+      position: static;
+      color: black;
+      background-color: #ededed;
+      margin-top: 5px;
+      width: 80%;
+      border-radius: 5px;
+      margin-left: 10px;
+      height: 5%;
+      padding: 3px;
+    }
+    
+    .name{
+      font-weight: bold;
+    }
+    
+    #pesan{
+      border: none;
+      border-radius: 50px;
+      padding: 8px;
+      background-color: #d3d3d3;
+      margin-left: 20px;
+    }
+    
+    button{
+      padding: 8px;
+      background-color: #97f19c;
+      border: none;
+      border-radius: 50px;
+      margin-left: 5px;
+    }
+    
+    .inputan{
+      position: fixed;
+      padding: -10px;
+      display: flex;
+      top: 95%;
+      text-align: center;
+      justify-content: center;
+      width: 100%;
+      background-color: white;
+    }
+    
+    .chat-title{
+      display: flex;
+      margin: auto auto;
+      font-weight: bold;
+    }
+  </style>
+</body>
+</html>

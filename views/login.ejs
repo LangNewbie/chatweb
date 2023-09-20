@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login Page - ChetG</title>
+</head>
+<body>
+  <div class="container">
+    <div class="box-login">
+      <form action="/" method="POST">
+        <center>
+        <span style="font-weight: bold" class="title">Login</span><br></br>
+        <input type="text" name="username" id="username" placeholder="Username" minlength="5" required=""><br><br>
+        <input type="password" name="password" id="password" placeholder="Password" required="" minlength="8"><br><br>
+        <button class="button-form">Masuk</button><br><br>
+      </form>
+      <a href="/signup">Do not have an account? SignUp</a>
+      </center>
+    </div>
+  </div>
+  <script>
+  if ('<%= sc %>' == '') {
+    console.log('pea')
+  } else {alert('<%= sc %>')}
+  </script>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      font-family: "Robotic";
+      letter-spacing: 1px
+    }
+    
+    .box-login{
+      display: flex;
+      margin-top: 65%;
+      margin-left: 20%;
+      text-align: center;
+      justify-content: center;
+      background-color: #d9d9d9;
+      width: 60%;
+      height: 230px;
+      border-radius: 15px;
+    }
+    
+    input{
+      border: none;
+      border-radius: 10px;
+      padding: 5px;
+    }
+    
+    button{
+      padding: 8px;
+      border: none;
+      border-radius: 50px;
+      background-color: #c6c6c6;
+    }
+    
+    form{
+      display: flex;
+      margin: auto auto;
+    }
+  </style>
+</body>
+</html>
